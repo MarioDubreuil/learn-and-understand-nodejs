@@ -1,4 +1,5 @@
-var greet1 = require('./greet1');
-
-var greet2 = require('./greet2');
-greet2.greet();
+var util = require('util');
+var name = 'Tony';
+var greeting = util.format('Hello %s!', name);
+console.log(greeting);
+util.log(greeting);
