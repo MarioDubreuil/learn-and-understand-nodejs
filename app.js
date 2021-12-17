@@ -1,20 +1,21 @@
-var Emitter = require('./emitter');
+var Emitter = require('events');
+var eventConfig = require('./config').events;
 
 var emitter = new Emitter();
 
-emitter.on('greet', function() {
+emitter.on(eventConfig.GREET, function() {
     console.log('Someone, somewhere said hello.');
 });
 
-emitter.on('greet', function() {
+emitter.on(eventConfig.GREET, function() {
     console.log('I whish you a good day.');
 });
 
-emitter.on('bye', function() {
+emitter.on(eventConfig.BYE, function() {
     console.log('Someone, somewhere said goodbye.')
 })
 
-console.log('Hello')
-emitter.emit('greet');
-console.log('bye');
-emitter.emit('bye');
+console.log('>Hello')
+emitter.emit(eventConfig.GREET);
+console.log('>bye');
+emitter.emit(eventConfig.BYE);
