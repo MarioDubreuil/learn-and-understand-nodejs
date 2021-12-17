@@ -1,21 +1,38 @@
-var Emitter = require('events');
-var eventConfig = require('./config').events;
+var person = {
+    firstname: '',
+    lastname: '',
+    greet: function() {
+        return this.firstname + ' ' + this.lastname;
+    }
+};
 
-var emitter = new Emitter();
+console.log(person);
 
-emitter.on(eventConfig.GREET, function() {
-    console.log('Someone, somewhere said hello.');
-});
+var john = Object.create(person);
+var jane = Object.create(person);
 
-emitter.on(eventConfig.GREET, function() {
-    console.log('I whish you a good day.');
-});
+john.firstname = 'John';
+// john.lastname = 'Doe';
 
-emitter.on(eventConfig.BYE, function() {
-    console.log('Someone, somewhere said goodbye.')
-})
+jane.firstname = 'Jane';
+// jane.lastname = 'Doe';
 
-console.log('>Hello')
-emitter.emit(eventConfig.GREET);
-console.log('>bye');
-emitter.emit(eventConfig.BYE);
+person.lastname = 'Doe';
+
+console.log(john);
+console.log(john.firstname);
+console.log(john.greet());
+
+console.log(jane);
+console.log(jane.firstname);
+console.log(jane.greet());
+
+person.lastname = 'Smith';
+
+console.log(john);
+console.log(john.firstname);
+console.log(john.greet());
+
+console.log(jane);
+console.log(jane.firstname);
+console.log(jane.greet());
