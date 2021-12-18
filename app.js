@@ -1,38 +1,21 @@
-var person = {
-    firstname: '',
-    lastname: '',
-    greet: function() {
-        return this.firstname + ' ' + this.lastname;
-    }
-};
+var EventEmitter = require('events')
+var util = require('util')
 
-console.log(person);
+function Greeter() {
+    this.gretting = 'Hello'
+}
 
-var john = Object.create(person);
-var jane = Object.create(person);
+util.inherits(Greeter, EventEmitter)
 
-john.firstname = 'John';
-// john.lastname = 'Doe';
+Greeter.prototype.greet = function(name) {
+    console.log(this.gretting + ' ' + name)
+    this.emit('greet', name)
+}
 
-jane.firstname = 'Jane';
-// jane.lastname = 'Doe';
+var greeter = new Greeter()
 
-person.lastname = 'Doe';
+greeter.on('greet', function(name) {
+    console.log('greeted ' + name)
+})
 
-console.log(john);
-console.log(john.firstname);
-console.log(john.greet());
-
-console.log(jane);
-console.log(jane.firstname);
-console.log(jane.greet());
-
-person.lastname = 'Smith';
-
-console.log(john);
-console.log(john.firstname);
-console.log(john.greet());
-
-console.log(jane);
-console.log(jane.firstname);
-console.log(jane.greet());
+greeter.greet('Mario')
