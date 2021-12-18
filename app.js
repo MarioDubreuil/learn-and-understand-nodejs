@@ -1,14 +1,16 @@
-var fullname1 = 'John Doe'
-var greet1 = 'Hello ' + fullname1
-var greet2 = `Hello ${ fullname1 }`
-console.log(greet1)
-console.log(greet2)
-
-var fullname2 = {
-    firstname: 'John',
-    lastname: 'Doe'
+var obj = {
+    name: 'John Doe',
+    greet: function() {
+        console.log(`Hello ${ this.name }`)
+    }
 }
-var greet3 = 'Hello ' + fullname2
-var greet4 = `Hello ${ fullname2 }`
-console.log(greet3)
-console.log(greet4)
+
+obj.greet()
+console.log()
+obj.greet.call(obj)
+obj.greet.call({name: 'Jane Doe'})
+obj.greet.call({anothername: 'Jane Doe'})
+console.log()
+obj.greet.apply(obj)
+obj.greet.apply({name: 'Jane Doe'})
+obj.greet.apply({anothername: 'Jane Doe'})
