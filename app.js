@@ -1,11 +1,11 @@
-'use strict'
+var buf = Buffer.from('Hello', 'utf8')
+console.log(buf)
+console.log(buf.toString())
+console.log(buf.toString('hex'))
+console.log(buf.toString('base64'))
+console.log(buf.toJSON())
+console.log(buf[2])
 
-var Greeter = require('./greeter')
-
-var greeter = new Greeter()
-
-greeter.on('greet', function(name) {
-    console.log('greeted ' + name)
-})
-
-greeter.greet('Mario')
+buf.write('wo')
+console.log(buf)
+console.log(buf.toString())
