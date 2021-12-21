@@ -1,6 +1,12 @@
-var buffer = new ArrayBuffer(8)
-var view = new Int32Array(buffer)
-view[0] = 5
-view[1] = 15
-view[2] = 25
-console.log(view)
+function greet(callback) {
+    console.log('Hello from greet')
+    if (typeof callback === 'function') {
+        callback()
+    }
+}
+
+greet(function() {
+    console.log('Hello from callback')
+})
+
+greet()
