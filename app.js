@@ -1,11 +1,6 @@
-var buf = Buffer.from('Hello', 'utf8')
-console.log(buf)
-console.log(buf.toString())
-console.log(buf.toString('hex'))
-console.log(buf.toString('base64'))
-console.log(buf.toJSON())
-console.log(buf[2])
-
-buf.write('wo')
-console.log(buf)
-console.log(buf.toString())
+var buffer = new ArrayBuffer(8)
+var view = new Int32Array(buffer)
+view[0] = 5
+view[1] = 15
+view[2] = 25
+console.log(view)
