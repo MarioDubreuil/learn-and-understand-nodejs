@@ -1,18 +1,11 @@
 var fs = require('fs')
-var greet1 = fs.readFileSync(`${__dirname}/greet.txt`, 'utf8')
-console.log(greet1)
-
-var greet2 = fs.readFile(`${__dirname}/greet.txt`, 'utf8', function(err, data) {
-    console.log(err)
-    console.log(data)
+var readable = fs.createReadStream(`${__dirname}/greet.txt`, { encoding: 'utf8', highWaterMark: 8 * 1024 })
+var writable = fs.createWriteStream(`${__dirname}/greetcopy.txt`)
+var count = 0;
+readable.on('data', function(chunck) {
+    count++
+    console.log(`${count} ${chunck.length}`)
+    writable.write(chunck)
+    // console.log(chunck.length)
+    // console.log(chunck)
 })
-wait(2000)
-console.log('done')
-
-function wait(ms) {
-    var start = new Date().getTime()
-    var end = start
-    while (end < start + ms) {
-        end = new Date().getTime()
-    }
-}
