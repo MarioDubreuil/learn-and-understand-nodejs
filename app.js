@@ -1,7 +1,6 @@
-var fs = require('fs')
-var zlib = require('zlib')
-var readable = fs.createReadStream(`${__dirname}/greet.txt`)
-var writable = fs.createWriteStream(`${__dirname}/greetcopy.txt`)
-var compressed = fs.createWriteStream(`${__dirname}/greet.txt.gz`)
-readable.pipe(writable)
-readable.pipe(zlib.createGzip()).pipe(compressed)
+var http = require('http')
+
+http.createServer(function(req, res) {
+    res.writeHead(200, { 'Content-Type': 'text/plain' })
+    res.end('Hello world from http server\n')
+}).listen(1337, '127.0.0.1')
