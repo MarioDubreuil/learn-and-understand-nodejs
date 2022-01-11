@@ -18,5 +18,8 @@
   "homepage": "https://github.com/MarioDubreuil/learn-and-understand-nodejs#readme",
   "dependencies": {
     "moment": "^2.29.1"
+  },
+  "devDependencies": {
+    "jasmine-node": "^3.0.0"
   }
 }
